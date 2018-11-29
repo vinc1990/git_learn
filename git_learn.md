@@ -237,3 +237,67 @@ $ git checkout -- test.txt
 
 此命令无论工作区是修改还是删除，都可以还原。
 
+### 关联远程仓库
+
+1. 关联远程仓库
+
+```
+$ git remote add origin git@github.com:xxxx/git_learn.git
+```
+
+`xxxx`为github账户名
+
+2. 推送到远程仓库
+
+```
+$ git push -u origin master
+```
+
+第一次推送`master`分支时，加上`-u`参数，git不但会把本地`master`分支内容推送到远程，还会把本地的`master`分支和远程的`master`分支关联起来，在以后推送时就可以使用`git push origin master
+
+#### SSH密钥
+
+```
+$ git push -u origin master
+Warning: Permanently added the RSA host key for IP address '13.250.177.223' to the list of known hosts.
+git@github.com: Permission denied (publickey).
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+```
+
+如果出现上面的提示，说明没有添加SSH密钥
+
+添加步骤：
+
+1. ```
+   $ ssh-keygen -t rsa -C "xxxx"
+   Generating public/private rsa key pair.
+   Enter file in which to save the key (/c/Users/xxx/.ssh/id_rsa):
+   /c/Users/xxx/.ssh/id_rsa already exists.
+   Overwrite (y/n)? y
+   Enter passphrase (empty for no passphrase):
+   Enter same passphrase again:
+   Your identification has been saved in /c/Users/Liang/.ssh/id_rsa.
+   Your public key has been saved in /c/Users/Liang/.ssh/id_rsa.pub.
+   The key fingerprint is:
+   SHA256:Ck3F1XJWbRrHCt28IbZcqp+AWgZQabmHadLNOfKoxK4 vinc1990
+   The key's randomart image is:
+   +---[RSA 2048]----+
+   |      .o+... o.= |
+   |     . =. . =oooB|
+   |      = * .+o.=*o|
+   |     + O *   +o. |
+   |    o + S o .    |
+   |     + o = o     |
+   |    o o +   o .  |
+   |     o .     o   |
+   |   E.            |
+   +----[SHA256]-----+
+   ```
+
+   其中`xxxx`为github用户名，`xxx`为电脑用户名
+
+2. 复制第一步生成的`id_rsa.pub`文件的内容到github
+
