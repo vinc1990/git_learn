@@ -301,3 +301,11 @@ and the repository exists.
 
 2. 复制第一步生成的`id_rsa.pub`文件的内容到github
 
+### 克隆远程仓库
+
+```
+$ git clone git@github.com:xxxx/git_learn.git
+```
+
+`xxxx`为github用户名
+
